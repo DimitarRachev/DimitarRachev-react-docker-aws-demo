@@ -23,3 +23,15 @@ after_success:
   - docker push mrachev/multi-nginx
   - docker push mrachev/multi-server
   - docker push mrachev/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-central-1'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
+  bucket_name: 'elasticbeanstalk-eu-central-1-995984943005'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
